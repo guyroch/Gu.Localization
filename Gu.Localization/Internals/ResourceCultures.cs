@@ -72,7 +72,7 @@
                     yield return neutralCulture;
                 }
 
-                var pattern = $"{entryAssembly.GetName().Name}\\.(?<culture>[A-Za-z]{{1,8}}(-[A-Za-z0-9]{{1,8}})*)\\.resources\\.dll";
+                var pattern = $"{entryAssembly.GetName().Name.Replace("+", "\\+")}\\.(?<culture>[A-Za-z]{{1,8}}(-[A-Za-z0-9]{{1,8}})*)\\.resources\\.dll";
                 foreach (var name in entryAssembly.GetManifestResourceNames())
                 {
                     var match = Regex.Match(name, pattern, RegexOptions.IgnoreCase);
